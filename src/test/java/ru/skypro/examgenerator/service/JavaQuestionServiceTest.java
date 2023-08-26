@@ -2,49 +2,59 @@ package ru.skypro.examgenerator.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import ru.skypro.examgenerator.Question;
+import ru.skypro.examgenerator.controller.repository.JavaQuestionRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 
 class JavaQuestionServiceTest {
-    private JavaQuestionService questionService;
+    @Mock
+    private JavaQuestionRepository javaQuestionRepository;
+
+    @InjectMocks
+    private JavaQuestionService javaQuestionService;
 
     @BeforeEach
     void setUp() {
-        questionService = new JavaQuestionService();
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
     void testAddQuestion() {
-        Question question = new Question("What is Java?", "Java is a programming language.");
-        questionService.addQuestion(question);
+        javaQuestionService.addQuestion("What is Java?", "Java is a programming language.");
 
-        assertEquals(1, questionService.getAllQuestions().size());
+        verify(javaQuestionRepository).add(any(Question.class));
     }
 
     @Test
     void testRemoveQuestion() {
         Question question = new Question("What is Java?", "Java is a programming language.");
-        questionService.addQuestion(question);
+        javaQuestionService.addQuestion(question);
 
-        assertEquals(1, questionService.getAllQuestions().size());
+        assertEquals(1, javaQuestionService.getAllQuestions().size());
 
-        questionService.removeQuestion(question);
+        javaQuestionService.removeQuestion(question);
 
-        assertTrue(questionService.getAllQuestions().isEmpty());
+        assertTrue(javaQuestionService.getAllQuestions().isEmpty());
     }
 
     @Test
     void testGetRandomQuestion_Success() {
         Question question = new Question("What is Java?", "Java is a programming language.");
-        questionService.addQuestion(question);
+        javaQuestionService.addQuestion(question);
 
-        assertNotNull(questionService.getRandomQuestion());
+        assertNotNull(javaQuestionService.getRandomQuestion());
+        assertTrue(javaQuestionService.getAllQuestions().contains(javaQuestionService.getRandomQuestion()));
     }
 
     @Test
     void testGetRandomQuestion_EmptyQuestions() {
-        assertThrows(RuntimeException.class, () -> questionService.getRandomQuestion());
+        assertThrows(RuntimeException.class, () -> javaQuestionService.getRandomQuestion());
     }
 
 }

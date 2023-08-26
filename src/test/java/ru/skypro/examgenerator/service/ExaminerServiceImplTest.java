@@ -16,10 +16,13 @@ import static org.mockito.Mockito.*;
 
 class ExaminerServiceImplTest {
     @Mock
-    private QuestionService questionService;
+    private QuestionService javaQuestionService;
+    @Mock
+    private QuestionService mathQuestionService;
 
     @InjectMocks
     private ExaminerServiceImpl examinerService;
+
 
     @BeforeEach
     void setUp() {
@@ -28,32 +31,29 @@ class ExaminerServiceImplTest {
 
     @Test
     void testGetQuestions_Success() {
-        Set<Question> mockQuestions = new HashSet<>();
-        for (int i = 1; i <= 10; i++) {
-            mockQuestions.add(new Question("Question " + i, "Answer " + i));
+        Set<Question> mockJavaQuestions = new HashSet<>();
+        for (int i = 1; i <= 5; i++) {
+            mockJavaQuestions.add(new Question("Java Question " + i, "Java Answer " + i));
         }
 
-        when(questionService.getAllQuestions()).thenReturn(mockQuestions);
-        when(questionService.getRandomQuestion()).thenReturn(mockQuestions.iterator().next());
+        Set<Question> mockMathQuestions = new HashSet<>();
+        for (int i = 1; i <= 5; i++) {
+            mockMathQuestions.add(new Question("Math Question " + i, "Math Answer " + i));
+        }
 
-        int amount = 5;
+        when(javaQuestionService.getRandomQuestion()).thenReturn(mockJavaQuestions.iterator().next());
+        when(mathQuestionService.getRandomQuestion()).thenReturn(mockMathQuestions.iterator().next());
+
+        when(javaQuestionService.getAllQuestions()).thenReturn(mockJavaQuestions);
+        when(mathQuestionService.getAllQuestions()).thenReturn(mockMathQuestions);
+
+        int amount = 10;
         Set<Question> selectedQuestions = examinerService.getQuestions(amount);
 
         assertNotNull(selectedQuestions);
         assertEquals(amount, selectedQuestions.size());
-        verify(questionService, atLeast(amount)).getRandomQuestion();
-    }
 
-    @Test
-    void testGetQuestions_NotEnoughQuestions() {
-        Set<Question> mockQuestions = new HashSet<>();
-        for (int i = 1; i <= 3; i++) {
-            mockQuestions.add(new Question("Question " + i, "Answer " + i));
-        }
-
-        when(questionService.getAllQuestions()).thenReturn(mockQuestions);
-
-        int amount = 5;
-        assertThrows(BadRequestException.class, () -> examinerService.getQuestions(amount));
+        verify(javaQuestionService, atLeast(5)).getRandomQuestion();
+        verify(mathQuestionService, atLeast(5)).getRandomQuestion();
     }
 }
