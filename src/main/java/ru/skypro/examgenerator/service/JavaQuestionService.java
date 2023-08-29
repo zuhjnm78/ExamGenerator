@@ -2,8 +2,8 @@ package ru.skypro.examgenerator.service;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import ru.skypro.examgenerator.Question;
-import ru.skypro.examgenerator.controller.repository.QuestionRepository;
+import ru.skypro.examgenerator.Question.Question;
+import ru.skypro.examgenerator.repository.QuestionRepository;
 
 import java.util.*;
 @Service("javaQuestionService")

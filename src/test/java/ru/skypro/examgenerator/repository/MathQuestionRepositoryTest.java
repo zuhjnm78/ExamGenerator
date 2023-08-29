@@ -1,7 +1,7 @@
-package ru.skypro.examgenerator.controller.repository;
+package ru.skypro.examgenerator.repository;
 
 import org.junit.jupiter.api.Test;
-import ru.skypro.examgenerator.Question;
+import ru.skypro.examgenerator.Question.Question;
 
 import static org.junit.jupiter.api.Assertions.*;
 

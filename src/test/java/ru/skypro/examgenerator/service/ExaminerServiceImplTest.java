@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import ru.skypro.examgenerator.Question;
-import ru.skypro.examgenerator.exception.BadRequestException;
+import ru.skypro.examgenerator.Question.Question;
 
 import java.util.HashSet;
 import java.util.Set;

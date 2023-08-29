@@ -1,9 +1,10 @@
 package ru.skypro.examgenerator.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.skypro.examgenerator.Question;
+import org.springframework.web.server.ResponseStatusException;
+import ru.skypro.examgenerator.Question.Question;
 import ru.skypro.examgenerator.service.QuestionService;
 
 import java.util.Set;
@@ -18,16 +19,17 @@ public class MathQuestionController {
 
     @PostMapping("/add")
     public void addQuestion(@RequestParam String question, @RequestParam String answer) {
-        mathQuestionService.addQuestion(question, answer);
+        throw new ResponseStatusException(HttpStatus.METHOD_NOT_ALLOWED, "Method Not Allowed");
     }
 
     @GetMapping("/remove")
     public void removeQuestion(@RequestParam String question, @RequestParam String answer) {
-        mathQuestionService.removeQuestion(new Question(question, answer));
+        throw new ResponseStatusException(HttpStatus.METHOD_NOT_ALLOWED, "Method Not Allowed");
     }
 
     @GetMapping
     public Set<Question> getAllQuestions() {
-        return mathQuestionService.getAllQuestions();
+
+        throw new ResponseStatusException(HttpStatus.METHOD_NOT_ALLOWED, "Method Not Allowed");
     }
 }

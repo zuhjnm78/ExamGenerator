@@ -2,7 +2,7 @@ package ru.skypro.examgenerator.service;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import ru.skypro.examgenerator.Question;
+import ru.skypro.examgenerator.Question.Question;
 
 import static org.junit.jupiter.api.Assertions.*;
 

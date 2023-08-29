@@ -1,6 +1,6 @@
 package ru.skypro.examgenerator.service;
 
-import ru.skypro.examgenerator.Question;
+import ru.skypro.examgenerator.Question.Question;
 
 import java.util.Set;
 

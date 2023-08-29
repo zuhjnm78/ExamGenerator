@@ -1,6 +1,6 @@
-package ru.skypro.examgenerator.controller.repository;
+package ru.skypro.examgenerator.repository;
 
-import ru.skypro.examgenerator.Question;
+import ru.skypro.examgenerator.Question.Question;
 
 import java.util.Set;
 

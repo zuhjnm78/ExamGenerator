@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import ru.skypro.examgenerator.Question;
-import ru.skypro.examgenerator.controller.repository.JavaQuestionRepository;
+import ru.skypro.examgenerator.Question.Question;
+import ru.skypro.examgenerator.repository.JavaQuestionRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
